@@ -1,11 +1,8 @@
 {-# Language CPP #-}
 {-# Language DataKinds #-}
-{-# Language ImportQualifiedPost #-}
 {-# Language MagicHash #-}
 {-# Language NoImplicitPrelude #-}
 {-# Language PatternSynonyms #-}
-{-# Language PolyKinds #-}
-{-# Language RankNTypes #-}
 {-# Language UnboxedTuples #-}
 {-# Language UnliftedNewtypes #-}
 {-# Language ViewPatterns #-}
@@ -80,7 +77,7 @@ isNullBigNat# n = coerce GHC.bigNatSize# n ==# 0#
 isNullBigNat :: BigNat# -> Bool
 isNullBigNat n = isTrue# (isNullBigNat# n)
 
-nullBigNat# :: Void# -> BigNat# 
+nullBigNat# :: (# #) -> BigNat#
 nullBigNat# = coerce GHC.bigNatZero#
 
 pattern Small :: BigNat#

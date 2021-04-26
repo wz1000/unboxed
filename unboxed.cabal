@@ -29,6 +29,7 @@ flag level2
 
 common minimal
   default-language: Haskell2010
+  ghc-options: -XGHC2021
 
 common base
   import: minimal
@@ -45,6 +46,12 @@ common base
   -- disable warnings
   ghc-options:
     -Wno-simplifiable-class-constraints -Wno-orphans
+
+library bug
+  import: base
+  hs-source-dirs: bug
+  exposed-modules: Bug
+  build-depends: base, ghc-prim, unboxed
 
 library internal
   import: base
@@ -968,7 +975,7 @@ library
 library measurement
   import: base
   ghc-options: -O2
-  build-depends: criterion-measurement
+  build-depends: gauge
   hs-source-dirs: measurement
   exposed-modules: Whnf Internal
 
@@ -977,5 +984,5 @@ benchmark bench-nat
   type: exitcode-stdio-1.0
   ghc-options: -O2
   main-is: nat.hs
-  build-depends: base, ghc-prim, unboxed, criterion, measurement
+  build-depends: base, ghc-prim, unboxed, gauge, measurement
   hs-source-dirs: bench

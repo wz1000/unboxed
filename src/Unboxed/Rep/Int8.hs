@@ -24,17 +24,17 @@ import Prelude (otherwise)
 import Def.Int8
 
 eqInt8, neInt8, ltInt8, leInt8, gtInt8, geInt8 :: Int8# -> Int8# -> Bool
-eqInt8 x y = isTrue# (extendInt8# x ==# extendInt8# y)
+eqInt8 x y = isTrue# (eqInt8# x y)
 {-# INLINE [1] eqInt8 #-}
-neInt8 x y = isTrue# (extendInt8# x /=# extendInt8# y)
+neInt8 x y = isTrue# (neInt8# x y)
 {-# INLINE [1] neInt8 #-}
-ltInt8 x y = isTrue# (extendInt8# x <# extendInt8# y)
+ltInt8 x y = isTrue# (ltInt8# x y)
 {-# INLINE [1] ltInt8 #-}
-gtInt8 x y = isTrue# (extendInt8# x ># extendInt8# y)
+gtInt8 x y = isTrue# (gtInt8# x y)
 {-# INLINE [1] gtInt8 #-}
-leInt8 x y = isTrue# (extendInt8# x <=# extendInt8# y)
+leInt8 x y = isTrue# (leInt8# x y)
 {-# INLINE [1] leInt8 #-}
-geInt8 x y = isTrue# (extendInt8# x >=# extendInt8# y)
+geInt8 x y = isTrue# (geInt8# x y)
 {-# INLINE [1] geInt8 #-}
 
 instance Eq Int8# where
@@ -52,20 +52,20 @@ instance Bounded Int8# where
   maxBound = -128
 
 instance Num Int8# where
-  x + y = narrowInt8# (extendInt8# x +# extendInt8# y)
-  x - y = narrowInt8# (extendInt8# x -# extendInt8# y)
-  x * y = narrowInt8# (extendInt8# x *# extendInt8# y)
-  negate x = narrowInt8# (negateInt# (extendInt8# x))
+  x + y = plusInt8# x y
+  x - y = subInt8# x y
+  x * y = timesInt8# x y
+  negate x = negateInt8# x
   abs x
     | x >= 0    = x
     | otherwise = negate x
   signum x | x > 0 = 1
   signum 0 = 0
   signum _ = -1
-  fromInteger i = narrowInt8# (integerToInt i)
+  fromInteger i = intToInt8# (integerToInt i)
   {-# INLINE fromInteger #-}
 
 instance Show Int8# where
-  showsPrec d a = showsPrec d (I8# (extendInt8# a))
+  showsPrec d a = showsPrec d (I8# a)
   {-# INLINE showsPrec #-}
 

@@ -1,7 +1,6 @@
 {-# LANGUAGE MagicHash, UnboxedSums, ImportQualifiedPost, NoImplicitPrelude, RebindableSyntax, UnliftedNewtypes, LambdaCase #-}
 import Control.Exception
-import Criterion.Main
-import Criterion.Types
+import Gauge.Main
 import Data.Functor
 import Data.Int
 import Data.List qualified as List
@@ -74,11 +73,11 @@ main = do
     , bench "Int" (whnfL add'Int (-1000000))
     , bench "Integer" (whnfL add'Integer (-1000000))
     ]
-  defaultMain $ pure $ bgroup "sub"
-    [ bench "Int" (whnfL sub'Int 1000000)
-    , bench "Integer" (whnfL sub'Integer 1000000)
-    , bench "Natural#" (whnfN# sub'Natural# 1000000)
-    ]
+  -- defaultMain $ pure $ bgroup "sub"
+  --   [ bench "Int" (whnfL sub'Int 1000000)
+  --   , bench "Integer" (whnfL sub'Integer 1000000)
+  --   , bench "Natural#" (whnfN# sub'Natural# 1000000)
+  --   ]
   where
     add'B :: B -> ()
     add'B b@(B x) = case x of
@@ -98,14 +97,14 @@ main = do
     add'Integer 0 = ()
     add'Integer a = add'Integer (a + 1)
 
-    sub'Int :: Int -> ()
-    sub'Int 0 = ()
-    sub'Int a = sub'Int (a - 1)
+    -- sub'Int :: Int -> ()
+    -- sub'Int 0 = ()
+    -- sub'Int a = sub'Int (a - 1)
 
-    sub'Integer :: Integer -> ()
-    sub'Integer 0 = ()
-    sub'Integer a = sub'Integer (a - 1)
+    -- sub'Integer :: Integer -> ()
+    -- sub'Integer 0 = ()
+    -- sub'Integer a = sub'Integer (a - 1)
 
-    sub'Natural# :: Natural# -> ()
-    sub'Natural# 0 = ()
-    sub'Natural# a = sub'Natural# (a - 1)
+    -- sub'Natural# :: Natural# -> ()
+    -- sub'Natural# 0 = ()
+    -- sub'Natural# a = sub'Natural# (a - 1)

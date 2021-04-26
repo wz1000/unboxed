@@ -14,7 +14,7 @@ module Unboxed.Rep.Float
   , Float#
   ) where
 
-import GHC.Integer
+import GHC.Integer (encodeFloatInteger)
 import GHC.Prim
 import GHC.Types
 import Prelude (otherwise)
@@ -58,7 +58,7 @@ instance Num Float# where
     | n < 0 = negate 1
     | n == 0 = 0
     | otherwise = 1
-  fromInteger = floatFromInteger
+  fromInteger = \i -> encodeFloatInteger i 0#
   {-# INLINE fromInteger #-}
 
 instance Fractional Float# where

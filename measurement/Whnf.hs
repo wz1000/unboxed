@@ -4,18 +4,17 @@
 {-# Language PolyKinds #-}
 module Whnf where
 
-import Criterion.Measurement.Types
+import Gauge.Benchmark
 import GHC.Types
-import Data.Int
 import Internal
 
 whnfN#
-  :: forall (a :: TYPE ('TupleRep '[ 'WordRep, 'UnliftedRep ])) b.
+  :: forall (a :: TYPE ('TupleRep '[ 'WordRep, 'BoxedRep 'Unlifted ])) b.
      (a -> b) -> a -> Benchmarkable
 whnfN# f x = toBenchmarkable (whnf'N# f x)
 
 whnfB#
-  :: forall (a :: TYPE ('SumRep '[ 'IntRep, 'LiftedRep ])) b.
+  :: forall (a :: TYPE ('SumRep '[ 'IntRep, 'BoxedRep 'Lifted ])) b.
      (a -> b) -> a -> Benchmarkable
 whnfB# f x = toBenchmarkable (whnf'B# f x)
 

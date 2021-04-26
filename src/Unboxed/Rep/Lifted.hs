@@ -1,8 +1,6 @@
 {-# Language UnboxedSums #-}
-{-# Language KindSignatures #-}
 {-# Language PatternSynonyms #-}
 {-# Language MagicHash #-}
-{-# Language RankNTypes #-}
 
 module Unboxed.Rep.Lifted
   ( pattern Nothing#

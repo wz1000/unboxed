@@ -1,5 +1,3 @@
-{-# Language KindSignatures #-}
-{-# Language StandaloneKindSignatures #-}
 signature Rep where
 import GHC.Types (RuntimeRep)
 

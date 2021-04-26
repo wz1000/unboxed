@@ -16,7 +16,7 @@ module Unboxed.Rep.Double
 
 import Unboxed.Internal.Class
 import GHC.Prim
-import GHC.Integer
+import GHC.Integer (encodeDoubleInteger)
 import GHC.Types
 import Prelude (otherwise)
 
@@ -58,7 +58,7 @@ instance Num Double# where
     | n < 0 = negate 1
     | n == 0 = 0
     | otherwise = 1
-  fromInteger = doubleFromInteger
+  fromInteger = \i -> encodeDoubleInteger i 0#
   {-# INLINE fromInteger #-}
 
 instance Fractional Double# where
