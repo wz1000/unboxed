@@ -21,7 +21,6 @@ import GHC.Exts
 import Prelude ((&&), (||), Bool(..), Ordering(..))
 
 import Unboxed.Rep.Int ()
-import Unboxed.Rep.Tuple2.Word.Unlifted ()
 import Unboxed.Rep.Word ()
 
 -- #define CONSTANT_FOLDED INLINE
@@ -210,7 +209,3 @@ instance Num Natural# where
   {-# inline signum #-}
   fromInteger = naturalFromInteger#
   {-# inline fromInteger #-}
-
-instance Show Natural# where
-  showsPrec d (NJ ws) = showsPrec d ws
-  showsPrec d (NS# w) = showsPrec d w
